@@ -7,6 +7,21 @@ import listingsData from "../listings.json";
 const Form = () => {
   const [Listings, setListings] = useState([]);
 
+
+  const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
+
+    useEffect(() => { 
+    	if (images.length < 1) return;
+	const newImageUrls = [];
+	images.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
+	setImageURLs(newImageUrls);
+    }, [images]);
+    function onImageChange(e) {
+	setImages([...e.target.files]);
+    }
+
+  
   useEffect(() => {
     setListings(listingsData);
   }, []);
@@ -383,13 +398,16 @@ const Form = () => {
             <label for="name" class="font-bold">
               Image Link
             </label>
-            <input
-              class="border rounded w-full py-2 px-3 text-xs text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="enter image"
-              type="text"
-              name="image"
-              onChange={handleChange}
-            />
+            <label>
+              <input
+                class="border rounded w-full py-2 px-3 text-xs text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="enter image"
+                type="file"
+                name="image"
+                onChange={onImageChange}
+              />
+              { imageURLs.map(imageSrc => <img src={imageSrc} width="400" height="400"/>) }
+            </label>
           </div>
 
           <input
