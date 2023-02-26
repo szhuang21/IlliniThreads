@@ -3,6 +3,7 @@ import shirt from "../images/shirt.jpeg";
 import pants from "../images/pants.jpeg";
 import dress from "../images/dress.jpeg";
 import ExperienceCard from "./ListingCard";
+import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid'
 
 
 
@@ -60,6 +61,7 @@ const Listings = () => {
   return (
     <>
     <input className=' w-2/5 h-14 bg-purple bg-opacity-40 pl-6 rounded-xl' type="search" placeholder="Search Listings" onChange={handleChange} value = {search}/>
+    <AdjustmentsHorizontalIcon className="bold inline h-7 px-4	bg-purple" />
     <div class="text-left">
       <div class="text-xl text-left font-bold font-poppins pb-8">Listings</div>
       <div class="flex flex-wrap">
