@@ -46,12 +46,12 @@ const Listings = () => {
    if (search.length > 0) {
      filteredListings = Listings?.filter((item) => {
        return (
-         String(item.id).toUpperCase().startsWith(search.toUpperCase()) ||
-         String(item.name).toUpperCase().startsWith(search.toUpperCase()) ||
-         String(item.price).toUpperCase().startsWith(search.toUpperCase()) ||
-         String(item.about).toUpperCase().startsWith(search.toUpperCase()) ||
-         String(item.skills).toUpperCase().startsWith(search.toUpperCase()) ||
-         String(item.image).toUpperCase().startsWith(search.toUpperCase())
+         String(item.id).toUpperCase().includes(search.toUpperCase()) ||
+         String(item.name).toUpperCase().includes(search.toUpperCase()) ||
+         String(item.price).toUpperCase().includes(search.toUpperCase()) ||
+         String(item.about).toUpperCase().includes(search.toUpperCase()) ||
+         String(item.skills).toUpperCase().includes(search.toUpperCase()) ||
+         String(item.image).toUpperCase().includes(search.toUpperCase())
        );
       }
      );
