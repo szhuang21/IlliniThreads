@@ -5,8 +5,6 @@ import dress from "../images/dress.jpeg";
 import ExperienceCard from "./ListingCard";
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid'
 
-
-
 const Listings = () => {
   const [search, setSearch] = useState('');
   const handleChange = (e) => {
@@ -51,8 +49,7 @@ const Listings = () => {
         );
       }
      );
-   } 
-  
+   }
 
   return (
     <>

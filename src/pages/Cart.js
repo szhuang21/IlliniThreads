@@ -1,199 +1,158 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
-import submitted from "../images/submitted.gif";
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+import { useHistory } from "react-router-dom";
+import Header from "../components/Header"
+import shirt from "../images/shirt.jpeg";
+import pants from "../images/pants.jpeg";
+import dress from "../images/dress.jpeg";
+import sophia from "../images/sophia.png"
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+const ShoppingCart = () => {
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      seller_name: "Xiaofan Li",
+      seller_username: "xiaofans_closet21",
+      name: "Vintage Adidas beige t shirt",
+      size: "M",
+      price: 10,
+      quantity: 1,
+      image: shirt,
+      location: "The Dean",
+      time: "Feb 26th 6:00pm",
+    },
+    {
+      id: 2,
+      seller_name: "Sophia Zhuang",
+      seller_username: "sophs_stash",
+      name: "American Rag Cie Women's Cream and Tan Trousers",
+      size: "L",
+      price: 5,
+      quantity: 1,
+      image: pants,
+      location: "The Dean",
+      time: "Mar 2nd 9:00pm",
+    },
+    {
+      id: 3,
+      seller_name: "Natalie Zhou",
+      seller_username: "natuwu_loves_clothes",
+      name: "American Rag Cie Women's Cream and Tan Trousers",
+      size: 'S',
+      price: 5,
+      quantity: 1,
+      image: dress,
+      location: "The Dean",
+      time: "Feb 28th 3:00pm",
+    },
+  ]);
+  const history = useHistory();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (handleValidation()) {
-      // alert("Form Submitted");
-      setFormSubmitted(true);
-      const newPerson = { ...formData };
-
-      fetch("http://localhost:8888/record/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newPerson),
-      }).catch((error) => {
-        window.alert(error);
-        return;
-      });
-    } else {
-      alert("Form Has Errors");
-    }
-    // setErrors({
-    //   name: "",
-    //   email: "",
-    //   message: "",
-    // });
-  };
-
-  const handleChange = (event) => {
-    handleValidation();
-    setFormData((prevalue) => {
-      return {
-        ...prevalue,
-        [event.target.name]: event.target.value,
-      };
+  const handleQuantityChange = (itemId, newQuantity) => {
+    const newCartItems = cartItems.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, quantity: newQuantity };
+      } else {
+        return item;
+      }
     });
+    setCartItems(newCartItems);
   };
 
-  const handleValidation = () => {
-    // add validation stuff here
-    let errors = {};
-    let formIsValid = true;
+  const handleRemoveItem = (itemId) => {
+    const newCartItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(newCartItems);
+  };
 
-    // name
-    if (formData.name.length === 0) {
-      formIsValid = false;
-      errors["name"] = "Name cannot be empty";
-    }
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
-    if (formData.name.length !== 0) {
-      if (!formData.name.match(/^[a-zA-Z\w\s]+$/)) {
-        formIsValid = false;
-        errors["name"] = "Invalid Name";
-      }
-    }
-
-    //Email
-    if (formData.email.length === 0) {
-      formIsValid = false;
-      errors["email"] = "Cannot be empty";
-    }
-
-    if (formData.email.length !== 0) {
-      console.log("line 86");
-      console.log("formData.email ", formData.email);
-      let lastAtPos = formData.email.lastIndexOf("@");
-      let lastDotPos = formData.email.lastIndexOf(".");
-
-      if (
-        !(
-          lastAtPos < lastDotPos &&
-          lastAtPos > 0 &&
-          formData.email.indexOf("@@") == -1 &&
-          lastDotPos > 2 &&
-          formData.email.length - lastDotPos > 2
-        )
-      ) {
-        formIsValid = false;
-        errors["email"] = "Email is not valid";
-      }
-    }
-
-    // message
-    if (formData.message.length === 0) {
-      formIsValid = false;
-      errors["message"] = "Message be empty";
-    }
-
-    setErrors(errors);
-    return formIsValid;
+  const handleCheckout = () => {
+    // Save cartItems to database or perform other actions here
+    // ...
+    // Navigate to confirmation page
+    history.push("/confirmation");
   };
 
   return (
-    <div>
-      <Header />
+    <div className="container mx-auto py-8 font-poppins">
+      <Header></Header>
+      <div className="text-lg font-bold mb-4">Bag</div>
 
-      <div class="pl-40 pt-20 pr-5">
-        <div class="max-w-lg">
-          <div class="text-3xl w-full text-left font-medium">
-            Love to hear from you, Let's get in touch 👋
+      <div>
+        {cartItems.map((item) => (
+          <div className="mb-8 w-3/4 content-center p-6 outline outline-1 rounded-md">
+            <div className="grid grid-cols-4 gap-4">
+              <div className="flex items-center">
+                <img className="h-10 w-10 rounded-full mr-4" src={sophia} />
+                <div>
+                  <div className="font-bold text-sm">{item.seller_name}</div>
+                  <div className="text-gray-700 text-xs">
+                    @{item.seller_username}
+                  </div>
+                </div>
+              </div>
+
+              <div key={item.id} className="col-span-4 grid grid-cols-4 gap-4">
+                <div>
+                  <img src={item.image} alt={item.name} className="w-36" />
+                </div>
+                <div>
+                  <div class="mb-2">{item.name}</div>
+                  <div className="font-bold mb-2">${item.price.toFixed(2)}</div>
+                  <div className="mb-2">{item.size}</div>
+                  <button
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="text-red-500 hover:text-red-700 focus:outline-none"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div></div>
+                <div>
+                  <table className="border-collapse w-full text-sm">
+                    <tbody>
+                      <tr className="border-b border-gray-500">
+                        <td className="p-2 pr-6 text-left ">Item(s):</td>
+                        <td className="p-2 text-right">
+                          ${item.price.toFixed(2)}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-500">
+                        <td className="p-2 pr-6 text-left border-b border-gray-500">
+                          Time:
+                        </td>
+                        <td className="p-2 text-right">{item.time}</td>
+                      </tr>
+                      <tr className="border-b border-gray-500">
+                        <td className="p-2 pr-6 text-left">Location:</td>
+                        <td className="p-2 text-right">{item.location}</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 pr-6 text-left font-bold">Total:</td>
+                        <td className="p-2 text-right font-bold">
+                          US${subtotal.toFixed(2)}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button
+                    onClick={handleCheckout}
+                    className="bg-black hover:bg-green-600 w-full text-white font-bold py-2 px-4 rounded mt-2"
+                  >
+                    Checkout {item.quantity} Item
+                  </button>
+                </div>
+              </div>
+
+              <div className="col-span-4"></div>
+            </div>
           </div>
-        </div>
-
-        <div class="max-w-4xl">
-          <form onSubmit={handleSubmit} class="mt-5">
-            <div class="relative overflow-auto mb-1">
-              <div class="flex space-x-4">
-                <div class="w-1/2 mb-4">
-                  <div>
-                    <label for="name" class="w-full">
-                      Your Name*
-                    </label>
-                  </div>
-                  <input
-                    class="font-gloria-hallelujah w-full mr-5 ml-0.5 py-2 px-3 mb-1 text-xs rounded-lg shadow-sm text-gray-800 bg-neutral-100 leading-tight focus:outline-black ${(errors.name.length > 0) ? 'bg-neutral-800' : ''}`}"
-                    placeholder="enter your name"
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                  />
-                  <div class="text-xs text-red-500 ml-1 mt-1">
-                    {errors.name}
-                  </div>
-                </div>
-                <div class="w-1/2">
-                  <div>
-                    <label for="email" class="w-full">
-                      Your Email*
-                    </label>
-                  </div>
-                  <input
-                    class="font-gloria-hallelujah w-full mr-5 py-2 px-3 mb-1 ml-0.5 text-xs rounded-lg shadow-sm text-gray-800 bg-neutral-100 leading-tight focus:outline-black"
-                    placeholder="enter your email"
-                    type="text"
-                    name="email"
-                    onChange={handleChange}
-                  />
-                  <div class="text-xs text-red-500 ml-1 mt-1">
-                    {errors.email}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="">
-              <div class="">
-                <label for="message" class="w-full">
-                  Message*
-                </label>
-                <textarea
-                  class="font-gloria-hallelujah w-full mr-5 py-2 px-3 mb-1 ml-0.5 text-xs rounded-lg shadow-sm text-gray-800 bg-neutral-100 leading-tight focus:outline-black"
-                  placeholder="hey it's sophia, sorry i can't answer the phone right now <3 XOXO"
-                  type="text"
-                  rows="6"
-                  name="message"
-                  onChange={handleChange}
-                />
-                <div class="text-xs text-red-500 ml-1 mt-1">
-                  {errors.message}
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              class="w-1/2 mt-6 font-gloria-hallelujah text-sm py-3 px-5 bg-pink-300 text-white rounded hover:bg-pink-500"
-            >
-              ✨ Send It ✨
-            </button>
-            {formSubmitted ? (
-              <div class="mt-4 font-gloria-hallelujah">
-                ✏️ yay! your message has been received :D
-              </div>
-            ) : null}
-            {formSubmitted ? <img src={submitted}></img> : null}
-          </form>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default Contact;
+export default ShoppingCart;

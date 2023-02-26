@@ -119,7 +119,7 @@ const ListingCard = (props) => {
             </div>
 
             <div className="mt-4 text-md text-black text-montserrat mb-2">
-              About
+              Product Details
             </div>
 
             <div class="text-xs text-black font-poppins">{props.about}</div>
