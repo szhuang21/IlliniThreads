@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import ListingsPage from "./pages/ListingsPage";
 import Cart from "./pages/Cart";
 import Form from "./pages/FormPage";
+import Confirmation from "./pages/Confirmation";
 /**
  * provides routing to different pages
  */
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route exact path="/cart">
           <Cart />
+        </Route>
+        <Route exact path="/confirmed">
+          <Confirmation />
         </Route>
       </Switch>
     </Router>

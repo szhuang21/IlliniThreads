@@ -68,11 +68,12 @@ const ShoppingCart = () => {
     0
   );
 
-  const handleCheckout = () => {
+  const handleCheckout = (event) => {
     // Save cartItems to database or perform other actions here
     // ...
     // Navigate to confirmation page
     history.push("/confirmation");
+
   };
 
   return (
