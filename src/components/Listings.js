@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import shirt from "../images/shirt.jpeg";
 import pants from "../images/pants.jpeg";
 import dress from "../images/dress.jpeg";
 import ExperienceCard from "./ListingCard";
 
+
+
 const Listings = () => {
+  const [search, setSearch] = useState('');
+  const handleChange = (e) => {
+      e.preventDefault();
+      setSearch(e.target.value);
+  }
   const Listings = [
     {
       id: 1,
@@ -34,12 +41,29 @@ const Listings = () => {
       image: dress,
     },
   ];
+  let filteredListings = Listings;
+   if (search.length > 0) {
+     filteredListings = Listings?.filter((item) => {
+       return (
+         String(item.id).toUpperCase().startsWith(search.toUpperCase()) ||
+         String(item.name).toUpperCase().startsWith(search.toUpperCase()) ||
+         String(item.price).toUpperCase().startsWith(search.toUpperCase()) ||
+         String(item.about).toUpperCase().startsWith(search.toUpperCase()) ||
+         String(item.skills).toUpperCase().startsWith(search.toUpperCase()) ||
+         String(item.image).toUpperCase().startsWith(search.toUpperCase())
+       );
+      }
+     );
+   } 
+  
 
   return (
+    <>
+    <input className=' w-2/5 h-14 bg-purple bg-opacity-40 pl-6 rounded-xl' type="search" placeholder="Search Listings" onChange={handleChange} value = {search}/>
     <div class="text-left">
       <div class="text-xl text-left font-bold font-poppins pb-8">Listings</div>
       <div class="flex flex-wrap">
-        {Listings.map((listing) => (
+        {filteredListings.map((listing) => (
           <ExperienceCard
             key={listing.id}
             name={listing.name}
@@ -51,6 +75,7 @@ const Listings = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
