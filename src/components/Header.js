@@ -55,7 +55,7 @@ const Header = () => {
               </li>
               <li>
                 <a
-                  href="/form"
+                  href="/listingsPage"
                   class="block py-2 pl-3 pr-4 text-gray-500 rounded hover:underline hover:text-pink-400"
                 >
                   Post Listing
@@ -63,7 +63,7 @@ const Header = () => {
               </li>
               <li>
                 <a
-                  href="/contact"
+                  href="/cart"
                   class="block py-2 pl-3 pr-4 text-gray-500 rounded rounded hover:underline hover:text-pink-400"
                 >
                   Cart

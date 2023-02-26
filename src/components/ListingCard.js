@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
-import Skills from "./Skills";
+import Skills from "./Tags";
 
 const ListingCard = (props) => {
   const [showSidebar, setShowSidebar] = useState(false);
