@@ -1,16 +1,14 @@
 import React from "react";
 import shirt from "../images/shirt.jpeg";
 import pants from "../images/pants.jpeg";
-import spartify from "../images/spartify.png";
-import webscraper from "../images/webscraper.png";
-import northwestern from "../images/northwestern.png";
+// import logo from "../images/logo.png";
 import ExperienceCard from "./ListingCard";
 
 const Listings = () => {
   return (
     <div class="text-left">
       <div class="text-xl text-left font-bold font-poppins pb-8">Listings</div>
-
+      {/* <logo/> */}
       <div class="flex flex-wrap">
         <ExperienceCard
           name="Shirt"

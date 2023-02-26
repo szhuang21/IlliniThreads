@@ -1,12 +1,24 @@
 import React from "react";
-
+import logo from "../images/logo.png"
 const Header = () => {
   return (
     <div>
       <nav class="sm:px-4 py-2.5">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="/" class="flex items-center">
+          {/* <a href="/" class="flex items-center">
             <div class="self-center text-xl font-semibold font-domine">Campus Threads</div>
+          </a> */}
+          <a href="/" class="flex items-center">
+            <div class="self-center text-xl font-semibold font-domine">
+              <img
+                src={logo}
+                alt="..."
+                class="shadow w-12 rounded-lg align-middle border-none"
+              />
+              {/* <div class="self-center text-xl font-semibold font-domine">
+                Campus Threads
+              </div> */}
+            </div>
           </a>
           <button
             data-collapse-toggle="navbar-default"

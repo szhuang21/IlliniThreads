@@ -84,7 +84,7 @@ const ListingCard = (props) => {
           )}
           {/* applicant card */}
           <div
-            className={`top-0 right-0 w-[35vw] bg-amber-100 p-10 pl-10 text-black fixed h-full z-40 rounded-md ease-in-out duration-300 overflow-y-scroll ${
+            className={`top-0 right-0 w-[35vw] bg-white p-10 pl-10 text-black fixed h-full z-40 rounded-md ease-in-out duration-300 overflow-y-scroll ${
               showSidebar ? "translate-x-0 " : "translate-x-full"
             }`}
           >
@@ -98,23 +98,22 @@ const ListingCard = (props) => {
                     icon={faArrowCircleLeft}
                     className="icon text-black"
                   />
-                  {"  "} Back to Listings.
+                  {"  "} Back to Listings
                 </div>
               </div>
             </button>
 
             <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-            <div className="mt-4 text-lg font-semibold text-black text-montserrat mb-2">
-              {props.name}
-            </div>
             {/* 
             <div className="mt-4 text-md text-black text-montserrat mb-2">
               Price
             </div> */}
 
             <img class="mt-4 rounded-lg" src={props.image} />
-
+            <div className="mt-4 text-lg font-semibold text-black text-montserrat mb-2">
+              {props.name}
+            </div>
             <div class="pt-4 text-lg font-bold text-black font-poppins">
               {props.price}
             </div>
@@ -145,7 +144,7 @@ const ListingCard = (props) => {
               {props.github}
             </a>
 
-            <button class="mt-8 text-white bg-zinc-900 rounded-lg w-full p-1 font-poppins">
+            <button class="mt-8 text-white bg-zinc-900 rounded-md w-full p-1 font-poppins hover:bg-blue-600">
               Add to Cart
             </button>
           </div>
