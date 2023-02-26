@@ -1,0 +1,40 @@
+{
+    "listings": [
+    {
+        "id": 1,
+        "name": "Vintage Adidas Shirt",
+        "seller": "jessica123",
+        "price": 10,
+        "type": "shirt",
+        "size": "medium",
+        "about":
+        "Vintage Adidas beige t shirt Size - medium (could fit a small too) Excellent condition",
+        "tags": ["Excellent", "Vintage", "Beige"],
+        "image": "shirt"
+    },
+    {
+        "id": 2,
+        "name": "American Rag Cie Women's Cream and Tan Trousers",
+        "seller": "hannah456",
+        "price": 5,
+        "type": "pants",
+        "size": "13",
+        "about":
+        "low rise flare cargo pants light cream/tan color, 97% cotton 3% spandex material, American Rag Cie brand tag size 13",
+        "tags": ["Used-Excellent", "American Rag Cie"],
+        "image": "pants"
+    },
+    {
+        "id": 3,
+        "name": "Olive Green Women's Dress",
+        "seller": "sophia789",
+        "price": 40,
+        "type": "dress",
+        "size": "small",
+        "about":
+        "Princess Polly Cindy mini dress ✨ super cute sage green mini dress that ties around the neck! Unfortunately, it is too small for me in the hip area :( I can barely put this on so it’s definitely meant for girls with slim hips! Size Us 0. Brand new with tags, price is firm! For reference, I’m 5,4 with a 24-25 in waist and 37 in hips :) Dm me if you have any more questions ☺️",
+        "tags": ["Brand new", "Princess Polly"],
+        "image": "dress"
+    }
+    ]
+}
